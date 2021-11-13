@@ -1,82 +1,57 @@
-// // console.log('hello clsss 20')
-// // const numbers = [1, 2, 3, 4, 5];
+const numbers = [1, 2, 3, 4, 5];
 
-// // for (const myNum of numbers) {
-// //   console.log(typeof myNum.toString()) // string
-// // }
+// Example of how we can use the for...of loop and JavaScript built-in methods.
+// See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString for documentation
+// Remember "myNum" is just a number I chose to give it. It could be called anything and it will still loop over the elements in the numbers array
+for (const myNum of numbers) {
+  console.log(typeof myNum.toString()) // will print string 5 times
+}
 
-// // console.log(typeof numbers[0]) // number
+console.log(typeof numbers[0]) // number
 
-// // console.log(numbers.join(';'))
+// Join array of numbers to a string, using the built-in JavaScript method.
+console.log(numbers.join(';')) // 1;2;3;4;5
 
-// // let str = '';
-// // for (const myNum of numbers) {
-// //   str = str + myNum.toString() + ';'; 
-// // }
+// Join array of numbers to a string, using a for..of loop
+let str = '';
+for (const myNum of numbers) {
+  str = str + myNum.toString() + ';'; 
+}
 
-// // console.log('alternative join', str);
+console.log('"Homemade" join', str); // 1;2;3;4;5; <-- notice the end here, we have another ;
 
-// // const fruits = ["Apples", "Pear", "Orange"];
-// // // console.log(fruits.length);
-// // // push a new value into the "copy"
-// // const shoppingCart = fruits;
-// // shoppingCart.push("Banana");
-// // // console.log(shoppingCart);
-// // // what's in fruits?
-// // console.log('fruits length', fruits);
-
-// // const shoppingCart = ["Apples", "Pear", "Orange"];
-
-
-// // OBJECT
-// const ball1 = {
-//   // key: value
-//   color: 'red',
-//   funcOnObject: function() {
-//     console.log(this.color);
-//   }
-// };
-
-// console.log(ball1['color']);
-// console.log(ball1.color);
-
-// ball1['shape'] = 'square'
-
-// // console.log(ball1);
-// // console.log(typeof ball1.funcOnObject())
+// Example of "pass-by-reference" - notice how fruits change when we push to shoppingCart
+const fruits = ["Apples", "Pear", "Orange"];
+console.log(fruits.length);
+// push a new value into the "copy"
+const shoppingCart = fruits;
+shoppingCart.push("Banana");
+console.log(shoppingCart);
+// what's in fruits?
+console.log('fruits length', fruits);
 
 
-
-// for (const classmate of myClassmates) {
-//   console.log(classmate.name);
-//   console.log(classmate.age);
-// }
-
-
-// console.log(myClassmates[0]);
-// console.log(myClassmates[0].length);
-
-const vahab = {
-  name: 'Vahab',
-  age: 50,
+// --- OBJECTS ---
+const ball = {
+  // key: value
+  color: 'red', // This is also called a "property" on the object
+  funcOnObject: function() { // A function on an object is also called a "method"
+    console.log(this.color);
+  }
 };
 
-// console.log(vahab.name);
+// We can access an object's properties by using [square brackets] or .notation (dot-notation)
+console.log(ball['color']);
+console.log(ball.color);
 
-// console.log(Object.getOwnPropertyNames(vahab))
-// const myClassmates = [
-//   vahab,
-//   4, 
-//   'testString'
-// ] 
-// vahab.classSpokesPerson = true;
+// We can set a new property with [square brackets] and .notation as well
+ball['shape'] = 'round';
+ball.canBounce = true;
 
-// // console.log(vahab);
-// delete vahab.classSpokesPerson
+console.log(ball);
+console.log(typeof ball.funcOnObject())
 
-// // console.log(Object.values(vahab))
-
-// Make array of mentors
+// We can combine arrays and objects to do cool stuff like:
 const mentors = [
   {
     name: 'Ida',
@@ -87,61 +62,47 @@ const mentors = [
     role: 'Homework reviewer'
   },
   {
-    name: 'Ali',
-    role: 'Homework reviewer'
+    name: 'Yaser',
+    role: 'Online TA'
   }
 ]
 
-// go over array of classmates: for loop
-// for (const mentor of mentors) {
-//   // Check if name is equal to Ali
-//   if (mentor.name === "Ali") {
-//     console.log('Yes, Ali is in the mentors')
-//   }
-//   // if true -> console.log(true) 
-// }
+// We can loop over the mentors array and use .notation to access and print the properties of each mentor object
+for (const mentor of mentors) {
+  console.log(mentor.name);
+  console.log(mentor.role);
+}
 
-const isAliInMentors = mentors.find((mentor) => {
-  return mentor.name === 'Ali'
+// Access the first element of the array by using indexing
+console.log(mentors[0]);
+console.log(mentors.length);
+
+// Exercise: We use the built-in array method "find" to see if we have a mentor named Ida
+const isIdaInMentors = mentors.find((mentor) => {
+  return mentor.name === 'Ida'
 })
 
-// console.log(isAliInMentors)
+console.log('Is Ida a mentor?:', isIdaInMentors)
 
 // Access the second mentor
 const secondMentor = mentors[1]
 console.log(secondMentor);
 
-// Change the role of that mentor
+// Add a new property to the second mentor - in this case Estefania - sorry for the high age 😅
 secondMentor.age = 90
-// console.log(secondMentor);
+// Change the role of that mentor
 secondMentor.role = 'Homework helper'
-// console.log(secondMentor);
-// console.log(mentors);
-
-// Loop over the array
-// access the second mentor
-// change the role of that mentor
-// mentors.forEach((mentor) => {
-//   if (mentor.name === 'Estefania') {
-//     mentor.role = 'Software engineer'
-//   }
-// })
-
+console.log(secondMentor);
+// Estefania should be updated in the mentors array also (remember it's pass-by-reference)
 console.log(mentors);
 
-mentors.forEach(function(mentor) {
-  if (mentor.name === 'Estefania') {
-    mentor.role = 'Online instructor'
-  } 
+// Loop over the array using the built-in "forEach"
+// access the mentor which is called Yaser
+// change the role of Yaser
+mentors.forEach((mentor) => {
+  if (mentor.name === 'Yaser') {
+    mentor.role = 'Software engineer'
+  }
 })
 
-function printName(name) {
-  console.log(name)
-}
-
-const printNameArrow = (name) => {
-  console.log(name);
-}
-
-console.log(printName('Joachim'))
-console.log(printNameArrow('Joachim'))
+console.log(mentors);
