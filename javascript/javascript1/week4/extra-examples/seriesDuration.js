@@ -39,7 +39,7 @@ function logOutSeriesText() {
   // 5. store the sum
   let totalDuration = 0;
 
-  // 2. loop over seriesDuration
+  // 2. loop over seriesDuration. Why do I use the forEach method here and not the for...of loop?
   seriesDurations.forEach((series) => {
     // 3. calculate duration for series (using a helper function)
     const duration = seriesDurationToMinutes(series);
